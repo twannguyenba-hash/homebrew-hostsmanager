@@ -11,6 +11,11 @@ cask "hostsmanager" do
 
   app "HostsManager.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/HostsManager.app"]
+  end
+
   zap trash: [
     "~/Library/Caches/com.hostsmanager.app",
     "~/Library/Preferences/com.hostsmanager.app.plist",
